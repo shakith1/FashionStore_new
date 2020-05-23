@@ -1,91 +1,132 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
-import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
 
-import DropDownItems from './Dropdown/dropdown_items';
+const Header = ({ user }) => {
 
-class Header extends Component {
+    const items = [
+        {
+            type: 'nav-item',
+            text: 'Shopping Cart',
+            link: '/shopping-cart',
+            restricted: true,
+            manager: true,
+            user: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Register',
+            link: '/register',
+            restricted: true,
+            include: false,
+            manager: false
+        },
+        {
+            type: 'nav-item',
+            text: 'Sign Up',
+            link: '/user/register',
+            restricted: false,
+            exclude: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Add Category',
+            link: '/addCategory',
+            restricted: true,
+            include: false,
+            manager: false
+        },
+        {
+            type: 'nav-item',
+            text: 'Login',
+            link: '/login',
+            restricted: false,
+            exclude: true
+        },
+        {
+            type: 'nav-item',
+            text: 'User List',
+            link: '/users',
+            restricted: true,
+            include: false,
+            manager: true
+        },
+        {
+            type: 'nav-item',
+            text: 'My Profile',
+            link: '/user',
+            restricted: true,
+            manager: true,
+            user: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Logout',
+            link: '/user/logout',
+            restricted: true,
+            manager: true,
+            user: true
+        },
+    ]
 
-    state = {
-        showNav: false
-    }
+    const element = (item, i) => (
+        <li key={i} className={item.type}>
+            <Link className="nav-link" to={item.link}>
+                {item.text}
+            </Link>
+        </li>
+    )
+    console.log(user)
+    return (
+        <div>
+            <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
+                <Link className="navbar-brand" to="/" >Fashion Store</Link>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
 
-    onHideNav = () => {
-        this.setState({
-            showNav: false
-        })
-    }
+                <div className="collapse navbar-collapse" id="navbarsExampleDefault" >
+                    <ul className="navbar-nav mr-auto">
+                        {
+                            user.login ?
+                                items.map((item, i) => {
+                                    if (user.login.isAuth) {
+                                        if (user.login.role === 1) {
+                                            return !item.include && !item.exclude ?
 
-    render() {
-        return (
-            <div>
-                <div className="open_nav">
-                    <FontAwesome className="fa fa-camera-retro fa-lg"
-                        onClick={() => this.setState({ showNav: true })}
-                        style={{
-                            color: '#ffffff',
-                            padding: '10px',
-                            cursor: 'pointer'
-                        }}
-                    />
+                                                element(item, i)
+                                                : null
+                                        } else if (user.login.role === 0) {
+                                            return !item.exclude && item.user ?
+
+                                                element(item, i)
+                                                : null
+                                        } else if (user.login.role === 2) {
+                                            return item.manager && !item.exclude ?
+
+                                                element(item, i)
+                                                : null
+                                        }
+
+                                    } else {
+                                        return !item.restricted ?
+                                            element(item, i)
+                                            : null
+                                    }
+                                })
+                                : null
+                        }
+                    </ul>
                 </div>
+            </nav>
+        </div>
+    );
+};
 
-                <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
-                    <Link className="navbar-brand" to="/" >Fashion Store</Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div className="collapse navbar-collapse" id="navbarsExampleDefault" >
-                        <ul className="navbar-nav mr-auto">
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/shopping-cart">Shopping Cart</Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/register">Register</Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/user/register">User SignUp</Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/addCategory">Add Category</Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">Login</Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/users">Users List</Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/user">My Profile</Link>
-                            </li>
-
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/user/logout">Logout</Link>
-                            </li>
-                            {/* <Dropdown>
-                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                Username
-                        </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <DropDownItems />
-                            </Dropdown.Menu> 
-                        </Dropdown> */}
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        );
+function mapStateToProps(state) {
+    return {
+        user: state.user
     }
 }
 
-
-export default Header;
+export default connect(mapStateToProps)(Header)

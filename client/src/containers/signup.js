@@ -36,6 +36,8 @@ class Signup extends Component {
             lastname: this.state.lastname
         }, this.props.user.users))
 
+        {this.redirectUser()}
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -49,6 +51,12 @@ class Signup extends Component {
                 password: '',
             })
         }
+    }
+
+    redirectUser = () => {
+        setTimeout(()=>{
+            this.props.history.push('/users')
+        },1000)
     }
 
     render() {
@@ -99,6 +107,7 @@ class Signup extends Component {
                         {this.state.error}
                     </div>
                 </form>
+                
             </div>
         );
     }

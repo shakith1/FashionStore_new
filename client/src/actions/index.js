@@ -28,3 +28,43 @@ export function getManagers() {
         payload:request
     }
 }
+
+export function addCategory(category){
+    const request = axios.post(`/api/category`,category)
+        .then(response => response.data);
+
+    return {
+        type:'ADD_CATEGORY',
+        payload:request
+    }
+}
+
+export function getCategories(){
+    const request = axios.get(`/api/getCategory`)
+    .then(response => response.data);
+
+    return {
+        type:'GET_CATEGORY',
+        payload:request
+    }
+}
+
+export function loginUser({email,password}){
+    const request = axios.post('/api/login',{email,password})
+                .then(response => response.data)
+
+    return {
+        type:'USER_LOGIN',
+        payload:request
+    }
+}
+
+export function sendMail(user){
+    const request = axios.post(`/api/sendmail`,user)
+    .then(response => response.data)
+
+    return{
+        type: 'SEND_MAIL',
+        payload: request
+    }
+}

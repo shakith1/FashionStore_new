@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 
 const config = require('./config/config').get(process.env.NODE_ENV);
@@ -54,6 +55,7 @@ app.get('/api/auth', auth, (req, res) => {
     })
 })
 
+
 // POST //
 
 app.post('/api/category', (req, res) => {
@@ -99,6 +101,44 @@ app.post('/api/login', (req, res) => {
                 })
             })
         })
+    })
+})
+
+app.post('/api/sendmail',(req,res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: config.EMAIL,
+            pass: config.PASSWORD
+        }
+    });
+
+    let mailOptions = {
+        from: config.EMAIL,
+        to: email,
+        subject: 'Added Manager',
+        text: `You have added as a manager in fashion Store.
+Password : ${password}
+
+Login Using that password to the fashion store.
+
+Thank you.
+`
+    };
+
+    transporter.sendMail(mailOptions,(err,data)=> {
+        if(err){
+            console.log('Error: ',err);
+            res.json({
+                success:false
+            })
+        }else{
+            console.log('email sent')
+            res.json({success:true})
+        }
     })
 })
 

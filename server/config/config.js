@@ -1,11 +1,15 @@
 const config = {
     production:{
         SECRET: process.env.SECRET,
-        DATABASE: process.env.MONGODB_URI
+        DATABASE: process.env.MONGODB_URI,
+        EMAIL: process.env.EMAIL,
+        PASSWORD: process.env.PASSWORD
     },
     default:{
         SECRET: 'SUPERSECRETPASSWORD123',
-        DATABASE: 'mongodb://localhost:27017/fashionStore'
+        DATABASE: 'mongodb://localhost:27017/fashionStore',
+        EMAIL: 'fashionstore065@gmail.com',
+        PASSWORD: 'store456@'
     }
 }
 

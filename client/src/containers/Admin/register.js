@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { getManagers, userRegister } from '../../actions';
+import { getManagers, userRegister, sendMail } from '../../actions';
+//import SendMail from './sendmail';
 
 class Register extends PureComponent {
 
@@ -40,6 +41,11 @@ class Register extends PureComponent {
             lastname: this.state.lastname,
             role: "2"
         }, this.props.user.users))
+
+        this.props.dispatch(sendMail({
+            email:this.state.email,
+            password:this.state.password
+        }))
 
     }
 

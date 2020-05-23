@@ -8,6 +8,10 @@ export default function (state = {}, action) {
             }
         case 'GET_MANAGER':
             return { ...state, users: action.payload }
+        case 'USER_LOGIN':
+            return { ...state, login: action.payload }
+        case 'SEND_MAIL':
+            return { ...state, email: action.payload.success }
         default:
             return state;
     }

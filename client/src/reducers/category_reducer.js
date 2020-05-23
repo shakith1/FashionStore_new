@@ -3,7 +3,7 @@ export default function (state = {}, action) {
         case 'ADD_CATEGORY':
             return { ...state, newcategory: action.payload.post }
         case 'GET_CATEGORY':
-            return { ...state, categories: action.payload }
+            return { ...state, category: action.payload }
         default:
             return state;
     }

@@ -58,6 +58,14 @@ class Header extends Component {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/login">Login</Link>
                             </li>
+
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/users">Users List</Link>
+                            </li>
+
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/user">My Profile</Link>
+                            </li>
                             {/* <Dropdown>
                             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                                 Username

@@ -49,7 +49,7 @@ class AddCategory extends PureComponent {
     }
 
     render() {
-        let category = this.props.category;
+        let category = this.props;
         console.log(category)
         return (
             <div className="rl_container">
@@ -79,7 +79,7 @@ class AddCategory extends PureComponent {
                     </div>
                 </form>
                 <div>
-                    <h4>Categories</h4>
+                   <br/> <h4>Categories</h4> <br/>
                     <table>
                         <thead>
                             <tr>

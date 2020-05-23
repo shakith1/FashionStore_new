@@ -12,20 +12,20 @@ class Login extends Component {
     }
 
     handleInputEmail = (event) => {
-        this.setState({email:event.target.value})
+        this.setState({ email: event.target.value })
     }
     handleInputPassword = (event) => {
-        this.setState({password:event.target.value})
+        this.setState({ password: event.target.value })
     }
 
-    
-    componentWillReceiveProps(nextProps){
-        if(nextProps.user.login.isAuth){
-            this.props.history.push('/')
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user.login.isAuth) {
+            this.props.history.push('/user')
         }
     }
 
-    submitForm = (e) =>{
+    submitForm = (e) => {
         e.preventDefault();
         this.props.dispatch(loginUser(this.state))
     }
@@ -71,9 +71,9 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
-        user:state.user
+        user: state.user
     }
 }
 

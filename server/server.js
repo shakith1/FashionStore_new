@@ -21,8 +21,8 @@ app.use(cookieParser());
 // GET //
 
 app.get('/api/getCategory', (req, res) => {
-    Category.find({}, (err, categories) => {
-        res.status(200).send(categories)
+    Category.find({}, (err, category) => {
+        res.status(200).send(category)
     })
 })
 
@@ -52,6 +52,15 @@ app.get('/api/auth', auth, (req, res) => {
         email: req.user.email,
         name: req.user.name,
         lastname: req.user.lastname
+    })
+})
+
+app.get('/api/getUser',(req,res)=>{
+    let id = req.query.id;
+
+    User.findById(id,(err,doc)=>{
+        if(err) return res.status(400).send(err);
+        res.send(doc);
     })
 })
 
@@ -154,12 +163,33 @@ app.post('/api/category_update', (req, res) => {
     })
 })
 
+app.post('/api/user_update', (req, res) => {
+    const user = new User(req.body);
+
+    User.findByIdAndUpdate(user.id, user, { new: true }, (err, doc) => {
+        if (err) return res.status(400).send(err);
+        res.json({
+            success: true,
+            doc
+        })
+    })
+})
+
 // DELETE //
 
 app.delete('/api/delete_category', (req, res) => {
     let id = req.query.id;
 
     Category.findByIdAndRemove(id, (err, doc) => {
+        if (err) return res.status(400).send(err);
+        res.json(true)
+    })
+})
+
+app.delete('/api/delete_user', (req, res) => {
+    let id = req.query.id;
+
+    User.findByIdAndRemove(id, (err, doc) => {
         if (err) return res.status(400).send(err);
         res.json(true)
     })

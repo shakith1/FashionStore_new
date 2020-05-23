@@ -66,6 +66,10 @@ class Header extends Component {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/user">My Profile</Link>
                             </li>
+
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/user/logout">Logout</Link>
+                            </li>
                             {/* <Dropdown>
                             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                                 Username

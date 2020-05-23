@@ -12,6 +12,7 @@ import Users from './components/Admin/users';
 import EditUser from './components/Admin/edit';
 import User from './components/Admin';
 import Auth from './HOC/auth';
+import Logout from './components/Admin/logout';
 
 const Routes = () => {
     return (
@@ -22,6 +23,7 @@ const Routes = () => {
                 <Route path="/register" exact component={Auth(Register,true)} />
                 <Route path="/login" exact component={Auth(Login,false)} />
                 <Route path="/user" exact component={Auth(User,true)} />
+                <Route path="/user/logout" exact component={Auth(Logout,true)} />
                 <Route path="/addCategory" exact component={Auth(AddCategory,true)} />
                 <Route path="/users" exact component={Auth(Users,true)} />
                 <Route path="/user/edit-user/:id" exact component={Auth(EditUser,true)}/>

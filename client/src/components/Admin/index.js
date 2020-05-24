@@ -4,6 +4,7 @@ const User = (props) => {
     let user = props.user.login;
     return (
         <div className="user_container">
+            <h2 className="head">Profile</h2>
             <div className="avatar">
                 <img alt="avatar" src="/images/avatar.png"/>
             </div>

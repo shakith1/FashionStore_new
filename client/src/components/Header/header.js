@@ -7,11 +7,26 @@ const Header = ({ user }) => {
     const items = [
         {
             type: 'nav-item',
-            text: 'Shopping Cart',
-            link: '/shopping-cart',
+            text: 'Kids',
+            link: '/kids',
             restricted: true,
             manager: true,
             user: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Products',
+            link: '/ind',
+            restricted: true,
+            manager: true,
+            user: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Products Add',
+            link: '/creates',
+            restricted: true,
+            manager: true,
         },
         {
             type: 'nav-item',
@@ -38,10 +53,17 @@ const Header = ({ user }) => {
         },
         {
             type: 'nav-item',
-            text: 'Login',
-            link: '/login',
-            restricted: false,
-            exclude: true
+            text: 'Add Products',
+            link: '/create',
+            restricted: true,
+            manager: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Manage Items',
+            link: '/manager',
+            restricted: true,
+            manager: true
         },
         {
             type: 'nav-item',
@@ -53,11 +75,49 @@ const Header = ({ user }) => {
         },
         {
             type: 'nav-item',
+            text: 'Add payment',
+            link: '/payment/add',
+            restricted: true,
+            manager: true,
+            user: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Payment Details',
+            link: '/payment/view',
+            restricted: true,
+            manager: true,
+        },
+        {
+            type: 'nav-item',
+            text: 'Reviews',
+            link: '/view',
+            restricted: true,
+            manager: true,
+            user: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Wish List',
+            link: '/index',
+            restricted: true,
+            manager: true,
+            user: true
+        },
+        {
+            type: 'nav-item',
             text: 'My Profile',
             link: '/user',
             restricted: true,
             manager: true,
             user: true
+        },
+        {
+            type: 'nav-item',
+            text: 'Login',
+            link: '/login',
+            restricted: false,
+            exclude: true
         },
         {
             type: 'nav-item',

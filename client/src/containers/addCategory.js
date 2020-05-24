@@ -78,20 +78,6 @@ class AddCategory extends PureComponent {
                         {this.state.error}
                     </div>
                 </form>
-                <div>
-                   <br/> <h4>Categories</h4> <br/>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.showCategories(category)}
-                        </tbody>
-                    </table>
-                </div>
             </div>
         );
     };

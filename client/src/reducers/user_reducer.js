@@ -6,6 +6,12 @@ export default function (state = {}, action) {
                 register: action.payload.success,
                 users: action.payload.users
             }
+        case 'REGISTER_USER':
+            return {
+                ...state,
+                register: action.payload.success,
+                users: action.payload.users
+            }
         case 'GET_MANAGER':
             return { ...state, users: action.payload }
         case 'USER_LOGIN':

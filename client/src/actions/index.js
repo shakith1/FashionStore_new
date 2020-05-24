@@ -19,6 +19,23 @@ export function userRegister(user, userList) {
     }
 }
 
+export function registerUser(user) {
+    const request = axios.post(`/api/register`, user)
+
+    return (dispatch) => {
+        request.then(({ data }) => {
+            let response = {
+                success: data.success
+            }
+
+            dispatch({
+                type: 'REGISTER_USER',
+                payload: response
+            })
+        })
+    }
+}
+
 export function getManagers() {
     const request = axios.get(`/api/managers`)
         .then(response => response.data);

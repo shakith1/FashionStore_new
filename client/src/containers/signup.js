@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userRegister } from '../actions';
+import { registerUser } from '../actions';
 
 class Signup extends Component {
 
@@ -29,12 +29,12 @@ class Signup extends Component {
         e.preventDefault();
         this.setState({ error: '' });
 
-        this.props.dispatch(userRegister({
+        this.props.dispatch(registerUser({
             email: this.state.email,
             password: this.state.password,
             name: this.state.name,
             lastname: this.state.lastname
-        }, this.props.user.users))
+        }))
 
         {this.redirectUser()}
 

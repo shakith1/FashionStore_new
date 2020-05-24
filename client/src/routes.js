@@ -13,6 +13,10 @@ import EditUser from './components/Admin/edit';
 import User from './components/Admin';
 import Auth from './HOC/auth';
 import Logout from './components/Admin/logout';
+import UserProdcutList from "./components/user_component/userProdcutList";
+import ProductList from "./components/manager_components/productList";
+import AddProducts from "./components/manager_components/addProducts";
+import EditProducts from "./components/manager_components/editProducts";
 
 const Routes = () => {
     return (
@@ -28,6 +32,11 @@ const Routes = () => {
                 <Route path="/users" exact component={Auth(Users,true)} />
                 <Route path="/user/edit-user/:id" exact component={Auth(EditUser,true)}/>
                 <Route path="/" exact component={Auth(Home,null)} />
+
+                <Route path={"/"} exact component={Auth(UserProdcutList)} />
+                <Route path={"/manager"} component={Auth(ProductList)} />
+                <Route path={"/create"} component={Auth(AddProducts)} />
+                <Route path={"/edit/:id"} component={Auth(EditProducts)}/>
             </Switch>
         </Layout>
     );

@@ -67,6 +67,16 @@ const Header = ({ user }) => {
             manager: true,
             user: true
         },
+        {
+            type: 'nav-item',
+            text: 'Manager',
+            link: '/manager',
+        },
+        {
+            type: 'nav-item',
+            text: 'Add Products',
+            link: '/create'
+        }
     ]
 
     const element = (item, i) => (

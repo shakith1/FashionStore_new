@@ -8,7 +8,7 @@ paymentRoutes.route('/view').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' +err));
 });
 
-paymentRoutes.route('/add').post((req, res) => {
+paymentRoutes.route('/addPayment').post((req, res) => {
     const person_name = req.body.person_name;
 
     const address = req.body.address;
@@ -36,7 +36,7 @@ paymentRoutes.route('/view/:id').get((req, res) => {
 });
 
 paymentRoutes.route('/:id').delete((req, res) => {
-    Payment.findByIdAndDelete(req.params.id)
+    Payment.findByIdAndRemove(req.params.id)
         .then(() => res.json('Payment deleted'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
@@ -56,9 +56,6 @@ paymentRoutes.route('/update/:id').post((req, res) => {
         })
         .catch(err => res.status(400).json('Error: ' + err));
 });
-
-
-
 
 
 module.exports = paymentRoutes;

@@ -54,7 +54,7 @@ class Addpayments extends Component {
             city: this.state.city
 
         };
-        axios.post('http://localhost:5000/payment/add', obj).then(res => console.log(res.data));
+        axios.post('/payment/addPayment', obj).then(res => console.log(res.data));
 
         this.setState({
             person_name: '',

@@ -22,7 +22,7 @@ class EditPayment extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/payment/view/'+ this.props.match.params.id)
+        axios.get('/payment/view/'+ this.props.match.params.id)
             .then(response => {
                 this.setState({
                     person_name: response.data.person_name,
@@ -79,7 +79,7 @@ class EditPayment extends Component {
 
         console.log(payment);
 
-        axios.post('http://localhost:5000/payment/update/' + this.props.match.params.id, formData)
+        axios.post('/payment/update/' + this.props.match.params.id, formData)
             .then(res => console.log(res.data));
 
 

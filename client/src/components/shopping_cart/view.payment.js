@@ -33,7 +33,7 @@ class ViewPayment extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/payment/view/')
+        axios.get('/payment/view/')
             .then(response=> {
                 this.setState({payment : response.data});
             })
@@ -43,7 +43,7 @@ class ViewPayment extends Component {
     }
 
     deletePayment(id) {
-        axios.delete('http://localhost:5000/payment/' +id)
+        axios.delete('/payment/' +id)
             .then(res => console.log(res.data));
         this.setState({
             payment: this.state.payment.filter(el => el._id !== id)
